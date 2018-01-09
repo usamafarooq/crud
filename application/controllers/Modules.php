@@ -133,7 +133,7 @@ class Modules extends MY_Controller {
 			$filed[$i] .= (isset($required[$i])) ? ' NOT NULL' : ' NULL';
 		}
 		$this->Modules_model->insert_batch('modules_fileds',$fileds);
-		$query = 'CREATE TABLE IF NOT EXISTS '.$tablename.' (id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, '.implode(',', $filed).', user_id int(11) NOT NULL)';
+		$query = 'CREATE TABLE IF NOT EXISTS '.$tablename.' (id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY, '.implode(',', $filed).', user_id int(11) NOT NULL, created_at timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)';
 		$q = $this->Modules_model->query($query);
 		$this->create_module($url.'_model',$fileds,$tablename);
 		$this->create_controller($url,$url.'_model',$tablename,$fileds);
