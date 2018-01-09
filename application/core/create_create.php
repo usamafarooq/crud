@@ -12,11 +12,11 @@ $contents = '
                 <i class="pe-7s-note2"></i>
             </div>
             <div class="header-title">
-                <h1>Add '.ucfirst($controller_name).'</h1>
+                <h1>Add '.str_replace("_"," ",ucfirst($controller_name)).'</h1>
                 <small></small>
                 <ol class="breadcrumb">
                     <li><a href="index.html"><i class="pe-7s-home"></i> Home</a></li>
-                    <li class="active">Add '.ucfirst($controller_name).'</li>
+                    <li class="active">Add '.str_replace("_"," ",ucfirst($controller_name)).'</li>
                 </ol>
             </div>
         </div>
@@ -29,7 +29,7 @@ $contents = '
                     <div class="panel panel-bd ">
                         <div class="panel-heading">
                             <div class="panel-title">
-                                <h4>Add '.ucfirst($controller_name).'</h4>
+                                <h4>Add '.str_replace("_"," ",ucfirst($controller_name)).'</h4>
                             </div>
                         </div>
                         <div class="panel-body">';
