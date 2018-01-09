@@ -77,6 +77,7 @@ class Modules extends MY_Controller {
 		$id = $this->input->post('module_id');
 		$module = $this->Modules_model->get_row_single('modules',array('id'=>$id));
 		$tablename = $module['main_name'];
+		$tablename = str_replace(" ","_",$tablename);
 		$url = $module['url'];
 		$name = $this->input->post('name');
 		$type = $this->input->post('type');

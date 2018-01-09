@@ -12,11 +12,11 @@ $contents = '
                 <i class="pe-7s-note2"></i>
             </div>
             <div class="header-title">
-                <h1>Edit '.ucfirst($controller_name).'</h1>
+                <h1>Edit '.str_replace("_"," ",ucfirst($controller_name)).'</h1>
                 <small></small>
                 <ol class="breadcrumb">
                     <li><a href="index.html"><i class="pe-7s-home"></i> Home</a></li>
-                    <li class="active">Edit '.ucfirst($controller_name).'</li>
+                    <li class="active">Edit '.str_replace("_"," ",ucfirst($controller_name)).'</li>
                 </ol>
             </div>
         </div>
@@ -29,7 +29,7 @@ $contents = '
                     <div class="panel panel-bd ">
                         <div class="panel-heading">
                             <div class="panel-title">
-                                <h4>Edit '.ucfirst($controller_name).'</h4>
+                                <h4>Edit '.str_replace("_"," ",ucfirst($controller_name)).'</h4>
                             </div>
                         </div>
                         <div class="panel-body">';
@@ -122,7 +122,7 @@ elseif ($f['filed_type'] == 'select') {
     $contents .='</select>';
 }
 elseif ($f['filed_type'] == 'file') {
-    $contents .= '<input class="form-control" name="'.$f['name'].'" type="file" value="" id="example-text-input" placeholder="" '.$req.'>';
+    $contents .= '<input class="form-control" name="'.$f['name'].'" type="file" value="" id="example-text-input" placeholder="">';
 } 
 elseif ($f['filed_type'] == 'textarea') {
     $contents .= '<textarea class="form-control" name="'.$f['name'].'" '.$req.'><?php echo %'.$controller_name.'["'.$f['name'].'"] ?></textarea>';
