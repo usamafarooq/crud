@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 09, 2018 at 08:43 AM
+-- Generation Time: Jan 09, 2018 at 09:51 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -19,6 +19,50 @@ SET time_zone = "+00:00";
 --
 -- Database: `crud`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog`
+--
+
+CREATE TABLE `blog` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `Title` varchar(255) NOT NULL,
+  `Description` text NOT NULL,
+  `category` int(11) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `blog`
+--
+
+INSERT INTO `blog` (`id`, `Title`, `Description`, `category`, `image`, `user_id`, `created_at`) VALUES
+(1, 'test', 'test', 1, '/uploads/10985522_912484858782426_653752271895395214_n.jpg', 2, '2018-01-09 08:48:13');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `blog_category`
+--
+
+CREATE TABLE `blog_category` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `Icon` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `blog_category`
+--
+
+INSERT INTO `blog_category` (`id`, `Name`, `Icon`, `user_id`, `created_at`) VALUES
+(1, 'Clothings', '/uploads/t-shirt-icon.png', 2, '2018-01-09 08:44:35');
 
 -- --------------------------------------------------------
 
@@ -44,7 +88,9 @@ INSERT INTO `modules` (`id`, `name`, `main_name`, `sort`, `icon`, `url`, `user_i
 (2, 'Dashboard', 'dashboard', 1, 'home', 'home', 4),
 (3, 'Modules', 'modules', 4, 'home', 'modules', 4),
 (5, 'Role/Permission', 'role', 2, 'home', 'role', 4),
-(7, 'Users', 'user', 3, 'home', 'users', 2);
+(7, 'Users', 'user', 3, 'home', 'users', 2),
+(17, 'Blog Category', 'blog_category', 5, 'home', 'blog_category', 2),
+(18, 'Blog', 'blog', 6, 'home', 'blog', 2);
 
 -- --------------------------------------------------------
 
@@ -77,7 +123,15 @@ INSERT INTO `modules_fileds` (`id`, `name`, `type`, `filed_type`, `options`, `le
 (3, 'relationship_status', 'VARCHAR', 'select', 'single,married,divorced,widowed', 100, 1, 15, 0, NULL, NULL, NULL),
 (4, 'image', 'VARCHAR', 'file', 'jpg,png,jpeg,gif', 100, 1, 15, 0, NULL, NULL, NULL),
 (5, 'education', 'VARCHAR', 'checkbox', 'matric,inter,bachlor', 255, 1, 15, 0, NULL, NULL, NULL),
-(6, 'message', 'TEXT', 'textarea', '', 255, 1, 15, 0, NULL, NULL, NULL);
+(6, 'message', 'TEXT', 'textarea', '', 255, 1, 15, 0, NULL, NULL, NULL),
+(7, 'Name', 'VARCHAR', 'input', '', 100, 1, 16, 0, NULL, NULL, NULL),
+(8, 'Icon', 'VARCHAR', 'file', 'png,jpg,jpeg,gif', 255, 1, 16, 0, NULL, NULL, NULL),
+(9, 'Name', 'VARCHAR', 'input', '', 100, 1, 17, 0, NULL, NULL, NULL),
+(10, 'Icon', 'VARCHAR', 'file', 'png,jpg,jpeg,gif', 255, 1, 17, 0, NULL, NULL, NULL),
+(11, 'Title', 'VARCHAR', 'input', '', 255, 1, 18, 0, NULL, NULL, NULL),
+(12, 'Description', 'TEXT', 'textarea', '', 500, 1, 18, 0, NULL, NULL, NULL),
+(13, 'category', 'INT', 'input', '', 11, 1, 18, 1, 'id', 'blog_category', 'Name'),
+(14, 'image', 'VARCHAR', 'file', 'png,jpg,jpeg,gif', 255, 1, 18, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -109,17 +163,12 @@ INSERT INTO `permission` (`id`, `module_id`, `user_id`, `user_type_id`, `view`, 
 (35, 2, 2, 14, 1, 0, 0, 0, 0, 0),
 (36, 3, 2, 14, 0, 0, 0, 0, 0, 0),
 (37, 5, 2, 14, 0, 0, 0, 0, 0, 0),
-(167, 2, 2, 1, 1, 1, 1, 1, 1, 1),
-(168, 3, 2, 1, 1, 1, 1, 1, 1, 1),
-(169, 5, 2, 1, 1, 1, 1, 1, 1, 1),
-(170, 7, 2, 1, 1, 1, 1, 1, 1, 1),
-(171, 9, 2, 1, 1, 1, 1, 1, 1, 1),
-(172, 10, 2, 1, 1, 1, 1, 1, 1, 1),
-(173, 11, 2, 1, 1, 1, 1, 1, 1, 1),
-(174, 12, 2, 1, 1, 1, 1, 1, 1, 1),
-(175, 13, 2, 1, 1, 1, 1, 1, 1, 1),
-(176, 14, 2, 1, 1, 1, 1, 1, 1, 1),
-(177, 15, 2, 1, 1, 1, 1, 1, 1, 1);
+(188, 2, 2, 1, 1, 1, 1, 1, 1, 1),
+(189, 3, 2, 1, 1, 1, 1, 1, 1, 1),
+(190, 5, 2, 1, 1, 1, 1, 1, 1, 1),
+(191, 7, 2, 1, 1, 1, 1, 1, 1, 1),
+(192, 17, 2, 1, 1, 1, 1, 1, 1, 1),
+(193, 18, 2, 1, 1, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -186,6 +235,18 @@ INSERT INTO `user_type` (`id`, `name`, `user_id`) VALUES
 --
 
 --
+-- Indexes for table `blog`
+--
+ALTER TABLE `blog`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `blog_category`
+--
+ALTER TABLE `blog_category`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `modules`
 --
 ALTER TABLE `modules`
@@ -222,20 +283,30 @@ ALTER TABLE `user_type`
 --
 
 --
+-- AUTO_INCREMENT for table `blog`
+--
+ALTER TABLE `blog`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `blog_category`
+--
+ALTER TABLE `blog_category`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `modules`
 --
 ALTER TABLE `modules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `modules_fileds`
 --
 ALTER TABLE `modules_fileds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `permission`
 --
 ALTER TABLE `permission`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
 --
 -- AUTO_INCREMENT for table `users`
 --
