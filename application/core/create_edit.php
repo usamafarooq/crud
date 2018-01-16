@@ -75,9 +75,10 @@ foreach ($fileds as $f) {
                                 else{
                                     $contents .='</label>
                                         <div class="col-sm-9">
-<?php %'.$f['name'].' = explode(",", %'.$controller_name.'["'.$f['name'].'"]) ?>
+
                                         ';
 if ($f['filed_type'] == 'checkbox') {
+    $contents .= '<?php %'.$f['name'].' = explode(",", %'.$controller_name.'["'.$f['name'].'"]) ?>';
     $options = explode(',', $f['options']);
     for ($i=0; $i < sizeof($options); $i++) { 
         $contents .= '
